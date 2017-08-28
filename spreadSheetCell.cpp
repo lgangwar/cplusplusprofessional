@@ -1,9 +1,7 @@
 #include "spreadSheetCell.h"
 
-spreadSheetCell::spreadSheetCell()
+spreadSheetCell::spreadSheetCell():mValue(0.0),mString("")
 {
-	mValue = 0.0;
-	mString = "";
 }
 
 spreadSheetCell::spreadSheetCell(double value)
@@ -11,7 +9,11 @@ spreadSheetCell::spreadSheetCell(double value)
 	setValue(value);
 }
 
-spreadSheetCell::spreadSheetCell(string mStr)
+spreadSheetCell::spreadSheetCell(const spreadSheetCell & src):mValue(src.mValue),mString(src.mString)
+{
+}
+
+spreadSheetCell::spreadSheetCell(const string &mStr)
 {
 	setString(mStr);	
 }
@@ -34,7 +36,7 @@ string spreadSheetCell::doubleToString(double value)
 	return ostr.str();
 }
 
-double spreadSheetCell::stringToDouble(string str)
+double spreadSheetCell::stringToDouble(const string &str)
 {
 	double temp;
 
@@ -53,7 +55,7 @@ string spreadSheetCell::getString()
 	return mString;
 }
 
-void spreadSheetCell::setString(string str)
+void spreadSheetCell::setString(const string &str)
 {
 	mString = str;
 	mValue = stringToDouble(str);
